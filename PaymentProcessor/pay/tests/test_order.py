@@ -1,28 +1,12 @@
-from PaymentProcessor.pay.order import *
-import unittest
+from PaymentProcessor.pay.order import LineItem, Order
 
 
-class MyTestCase(unittest.TestCase):
-    def test_empty_order_total(self):
-        order = Order()
-        self.assertEqual(order.total, 0)
-
-    def test_order_total(self):
-        order = Order()
-        order.line_items.append(LineItem(name="Item", price=100))
-        self.assertEqual(order.total, 100)
-
-    def test_order_total_2(self):
-        order = Order()
-        order.line_items.append(LineItem(name="Item", price=100))
-        order.line_items.append(LineItem(name="Item", price=100))
-        self.assertEqual(order.total, 200)
-
-    def test_order_pay(self):
-        order = Order()
-        order.pay()
-        self.assertEqual(order.status, OrderStatus.PAID)
+def test_empty_order_total() -> None:
+    order = Order()
+    assert order.total == 0
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_order_total() -> None:
+    order = Order()
+    order.line_items.append(LineItem(name="Test", price=100))
+    assert order.total == 100

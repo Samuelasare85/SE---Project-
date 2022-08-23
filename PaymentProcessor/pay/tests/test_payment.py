@@ -1,7 +1,7 @@
+import pytest
 from PaymentProcessor.pay.order import LineItem, Order
 from PaymentProcessor.pay.payment import pay_order
 from PaymentProcessor.pay.processor import PaymentProcessor
-import pytest
 from pytest import MonkeyPatch
 
 
@@ -21,4 +21,3 @@ def test_pay_order_invalid(monkeypatch: MonkeyPatch):
         monkeypatch.setattr(PaymentProcessor, "_check_api_key", lambda _: True)
         order = Order()
         pay_order(order)
-
